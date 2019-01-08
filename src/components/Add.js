@@ -27,6 +27,9 @@ const Button = styled.button`
 `;
 
 class Add extends Component {
+    focus=()=>{
+        this.input.focus();
+    }
     render() {
         const {value,onChange,onClick,enterAdd} = this.props;
         return (
@@ -37,6 +40,7 @@ class Add extends Component {
                     onKeyPress={(e)=>{
                         enterAdd(e);
                     }}
+                    ref={ref=>this.input=ref}
                 />
                 <Button 
                     onClick={()=>{

@@ -23,14 +23,6 @@ class App extends Component {
       work:e.target.value
     })
   }
-  enterAdd = (e)=>{
-    //미구현
-    const {works,work} = this.state;
-    if(work==='')return false;
-    if(e.key === 'Enter'){
-      
-    }
-  }
   workAdd = ()=>{
     const {works,work} = this.state;
     if(work==='')return false;
@@ -43,6 +35,23 @@ class App extends Component {
       }],
       work:''
     })
+    this.add.focus();
+  }
+  enterAdd = (e)=>{
+    const {works,work} = this.state;
+    if(work==='')return false;
+    if(e.key === 'Enter'){
+      this.setState({
+        works:[...works,{
+          id:this.id++,
+          text:work,
+          checked:false,
+          mody:false
+        }],
+        work:''
+      })
+      this.add.focus();
+    }
   }
   workDelete = (index)=>{
     const {works} = this.state;
@@ -114,6 +123,7 @@ class App extends Component {
               onChange={handleChange}
               onClick={workAdd}
               enterAdd={enterAdd}
+              ref={ref=>this.add=ref}
             />
           }>
             <TodoItemList

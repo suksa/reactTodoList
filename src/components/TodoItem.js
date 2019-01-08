@@ -22,14 +22,14 @@ const Input= styled.input``;
 class TodoItem extends Component {
   render() {
     const { id,text,del,checked,handleToggle,handleModify,mody,keyOn } = this.props;
-    
+    console.log(id)
     return (
       <Line onClick={()=>{
         handleToggle(id);
       }}>
       {
         mody?
-        <input
+        <Input
           type="text"
           value={text}
           onChange={(e)=>{
@@ -38,6 +38,12 @@ class TodoItem extends Component {
           onClick={(e)=>{
             e.stopPropagation();
           }}
+          onKeyPress={(e)=>{
+            if(e.key === 'Enter'){
+              handleModify(id);
+            }
+          }
+          }
         />
         :text
       }
